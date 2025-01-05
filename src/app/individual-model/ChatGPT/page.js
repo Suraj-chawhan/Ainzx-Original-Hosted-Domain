@@ -7,7 +7,7 @@ import DarkModeToggle from "../../DarkModeToggle";
 import { FiUser, FiLogIn, FiLock } from "react-icons/fi";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import ChatGPT from "../../../../Component/Model/ChatGPT";
+import ChatGPT from "../../../../Component/Chatgpt";
 const LoadingDots = () => {
   return (
     <div className="flex items-center space-x-2 mt-4">

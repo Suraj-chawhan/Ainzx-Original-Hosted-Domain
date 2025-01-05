@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import FluxChatTab from "../flux/page";
 import gsap from "gsap";
 
-import ChatGPT from "../../../Component/Model/ChatGPT";
+import ChatGPT from "../../../Component/Chatgpt";
 import Cohere from "../../../Component/Model/Cohere";
 import LoadingDots from "../../../Component/LoadingDots";
 import Image from "next/image";

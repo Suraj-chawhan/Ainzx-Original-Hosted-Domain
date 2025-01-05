@@ -3,7 +3,7 @@
 import { Center, OrbitControls, Text3D, Html } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useEffect, useRef, useState } from "react";
-import ChatGPT from "./Model/ChatGPT";
+import ChatGPT from "./Chatgpt";
 import Cohere from "./Model/Cohere";
 import Flux from "./Model/Flux";
 import Gemini from "./Model/Gemini";
