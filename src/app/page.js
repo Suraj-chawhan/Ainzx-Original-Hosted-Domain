@@ -95,7 +95,7 @@ export default function Home() {
 
       <header className="bg-gray-800 text-white py-4 shadow-md">
         <div className="container mx-auto flex justify-between items-center px-4">
-          <h1 className="text-2xl font-bold">AiNZx</h1>
+          <h1 className="text-2xl font-bold">AiNzX</h1>
           <nav className="flex space-x-6">
             <Link href="/" className="hover:text-blue-400">
               Home
@@ -137,7 +137,7 @@ export default function Home() {
         <section className="hero-section bg-gradient-to-r from-blue-900 to-purple-800 text-white py-20">
           <div className="container mx-auto text-center px-4">
             <h2 className="text-4xl font-bold mb-4">
-              Unlock the Power of AI with AiNZx
+              Unlock the Power of AI with AiNzX
             </h2>
             <p className="text-lg mb-8">
               Experience the best AI models in one place – ChatGPT, Mixtrial,
