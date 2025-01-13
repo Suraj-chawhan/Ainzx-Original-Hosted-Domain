@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from "next/link";
 import ModelHome from "../../Component/BotsHomepage";
 import LoadingDots from "../../Component/LoadingDots";
-
+import { useRouter } from "next/navigation";
 export default function Home() {
   const { data: session, status } = useSession();
-
+  const router = useRouter();
   useEffect(() => {
     if (typeof window !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
@@ -85,7 +85,7 @@ export default function Home() {
   return (
     <div className="bg-gray-900 text-gray-200">
       <Head>
-        <title>AiNzX- U nlock the Power of AI</title>
+        <title>AiNzX- Unlock the Power of AI</title>
         <meta
           name="description"
           content="Experience the best AI models in one place – ChatGPT, Mixtrial, Gemini, Lama, Claude, Flux, and more."
@@ -137,14 +137,14 @@ export default function Home() {
         <section className="hero-section bg-gradient-to-r from-blue-900 to-purple-800 text-white py-20">
           <div className="container mx-auto text-center px-4">
             <h2 className="text-4xl font-bold mb-4">
-              Unlock the Power of AI with AiNzX
+              Unlock the Power of AI with AiNZx
             </h2>
             <p className="text-lg mb-8">
               Experience the best AI models in one place – ChatGPT, Mixtrial,
               Gemini, Lama, Claude, Flux, and more.
             </p>
             <div className="hero-buttons flex justify-center space-x-4">
-              <Link href="./model">
+              <Link href="/model">
                 {" "}
                 <button className="bg-white text-blue-600 px-6 py-3 rounded shadow hover:bg-gray-200">
                   Explore AI Models
@@ -204,7 +204,7 @@ export default function Home() {
               Explore Our Models
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {["Chatgpt", "Mixtrial", "Gemini", "Lama", "Cohere", "Flux"].map(
+              {["ChatGPT", "Mixtrial", "Gemini", "Lama", "Cohere", "Flux"].map(
                 (model) => (
                   <div
                     key={model}
@@ -220,11 +220,13 @@ export default function Home() {
                       <li>✔️ Fast processing</li>
                       <li>✔️ Easy integration</li>
                     </ul>
-                    <Link href={`/individual-model/${model}`}>
-                      <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                        Try Now
-                      </button>
-                    </Link>
+
+                    <button
+                      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                      onClick={() => router.push(`/individual-model/${model}`)}
+                    >
+                      Try Now
+                    </button>
                   </div>
                 )
               )}

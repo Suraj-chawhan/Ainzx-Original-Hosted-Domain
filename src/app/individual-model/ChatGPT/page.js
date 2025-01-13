@@ -28,7 +28,7 @@ const LoadingDots = () => {
   );
 };
 
-export default function Home() {
+export default function Chatgpt() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const ref = useRef();
