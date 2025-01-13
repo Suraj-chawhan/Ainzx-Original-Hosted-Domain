@@ -86,12 +86,12 @@ function ModelHome() {
         />
 
         {/* Go to Model Button */}
-        <Html className="  w-[100vh] h-[100vh]   absolute flex  sm:justify-start  sm:items-end sm:left-20  sm:bottom-[16] md:justify-center md:items-end  md:bottom-20 ">
+        <Html className="  w-[100vh] h-[100vh]  flex justify-center items-end absolute bottom-20 sm:justify-start  sm:items-end sm:left-20  sm:bottom-[0.1] ">
           <button
             onClick={() => router.push(`/individual-model/${selectedModel}`)}
             className="sm:left-0  p-4 text-lg font-semibold bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-xl shadow-lg hover:from-green-600 hover:to-teal-700 focus:ring-4 focus:ring-teal-300 transition-all"
           >
-            Go to Model
+            Go to Model {">>"}
           </button>
         </Html>
       </Canvas>
