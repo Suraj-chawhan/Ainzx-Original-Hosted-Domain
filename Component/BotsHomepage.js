@@ -59,7 +59,7 @@ function ModelHome() {
 
   return (
     <div className="w-full h-[100vh]" onMouseMove={handleMouseMove}>
-      <Canvas className="w-full h-[100vh]">
+      <Canvas className="w-full h-[100vh] flex">
         <ambientLight intensity={0.5} />
 
         {/* Dropdown for Model Selection */}
@@ -87,12 +87,14 @@ function ModelHome() {
         />
 
         {/* Go to Model Button */}
-        <Html className="w-[100vh] h-[100vh] flex justify-end items-end absolute bottom-0 pr-10">
+        <Html className="  w-[100vh] h-[100vh]  flex justify-center items-end absolute bottom-20 sm:justify-start  sm:items-end sm:left-20  sm:bottom-[16]">
           <Link
-            href={`./individual-model/${selectedModel}`}
+            href={`/individual-model/${
+              selectedModel === "ChatGPT" ? "Chatgpt" : selectedModel
+            }`}
             className="w-[20vh] h-[-100vh]"
           >
-            <button className="p-4 text-lg font-semibold bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-xl shadow-lg hover:from-green-600 hover:to-teal-700 focus:ring-4 focus:ring-teal-300 transition-all">
+            <button className="sm:left-0  p-4 text-lg font-semibold bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-xl shadow-lg hover:from-green-600 hover:to-teal-700 focus:ring-4 focus:ring-teal-300 transition-all">
               Go to Model
             </button>
           </Link>

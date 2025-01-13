@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { FiUser, FiLogIn } from "react-icons/fi";
+import { FiUser, FiLogIn, FiMenu, FiX } from "react-icons/fi";
 
 import { Canvas } from "@react-three/fiber";
 import Lama from "../../../Component/Model/Lama";
@@ -119,14 +119,14 @@ const ChatTab = ({ tabName, url, setLoading, loading }) => {
             </div>
 
             {/* Input Section */}
-            <div className="absolute bottom-2 w-[100%]">
+            <div className="absolute bottom-2 w-[100%]  left-0 md:px-2">
               <input
                 type="text"
                 placeholder={`Type in ${tabName}`}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-                className="w-[90%] flex-1 px-4 py-2 border rounded-md outline-none text-slate-900 border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-600 dark:focus:ring-yellow-400"
+                className="w-[90%] flex-1 px-4  py-2 border rounded-md outline-none text-slate-900 border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-600 dark:focus:ring-yellow-400"
               />
               <button
                 onClick={handleSendMessage}
@@ -164,7 +164,7 @@ export default function Home() {
   const [userId, setUserId] = useState("");
   const [type, setType] = useState("");
   const [hasSubscription, setHasSubscription] = useState("free"); // Default to 'free'
-
+  const [isNavOpen, setIsNavOpen] = useState(false);
   useEffect(() => {
     if (session?.user) {
       setUserId(session?.user?.userId);
@@ -219,7 +219,7 @@ export default function Home() {
   };
 
   function call(index, lock) {
-    if (!session) {
+    if (!session && lock) {
       router.push("/signin");
     } else if (hasSubscription === "free" && lock) {
       router.push("/subscription");
@@ -235,11 +235,21 @@ export default function Home() {
       </div>
     );
   }
-
   return (
     <div className="relative w-full flex h-[100vh] font-sans bg-gray-50 dark:bg-gray-900 dark:text-gray-200 flex-wrap md:flex-nowrap">
+      {/* Navbar for Mobile */}
+      <div className="absolute top-0 left-0 w-full md:hidden flex items-center justify-between bg-blue-600 text-white p-4 z-50">
+        <h1 className="text-xl font-bold">WHA Chatbot</h1>
+        <button
+          className="text-white text-lg"
+          onClick={() => setIsNavOpen(!isNavOpen)}
+        >
+          <FiMenu />
+        </button>
+      </div>
+
       <div
-        className="absolute top-4 right-4 flex flex-col sm:flex-row z-50 gap-4 md:gap-6"
+        className="hidden md:absolute md:top-4 md:right-4 md:flex  md:flex-row z-50 gap-4 md:gap-6"
         ref={navRef}
       >
         <DarkModeToggle />
@@ -270,21 +280,97 @@ export default function Home() {
         )}
       </div>
 
-      {/* Sidebar */}
+      {/* Overlay Menu */}
+      {isNavOpen && (
+        <div className="absolute inset-0 bg-gray-900 bg-opacity-95 z-50 flex flex-col items-center justify-center space-y-8">
+          {/* Close Button */}
+          <button
+            className="absolute top-4 right-4 text-white text-3xl hover:text-gray-300 focus:outline-none"
+            onClick={() => setIsNavOpen(false)}
+          >
+            <FiX />
+          </button>
+
+          {/* Dark Mode Toggle */}
+          <div className="mb-6 px-10 py-2 ">
+            <DarkModeToggle />
+          </div>
+
+          {/* Authentication Buttons */}
+          {!session ? (
+            <div className="flex flex-col w-full max-w-md  space-y-4">
+              <button
+                className="px-6 py-3 text-lg font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition"
+                onClick={() => router.push("/signin")}
+              >
+                <FiLogIn className="mr-2 inline-block" />
+                Login
+              </button>
+              <button
+                className="px-6 py-3 text-lg font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition"
+                onClick={() => router.push("/signup")}
+              >
+                <FiUser className="mr-2 inline-block" />
+                Signup
+              </button>
+            </div>
+          ) : (
+            <button
+              className=" w-full max-w-md px-6 py-3 text-lg font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition"
+              onClick={() => signOut()}
+            >
+              Logout
+            </button>
+          )}
+
+          {/* Navigation Links */}
+          <h1 className="text-5xl font-bold">Models Selection</h1>
+          <nav className="w-full max-w-md px-6 space-y-4">
+            {filteredBots.map((bot, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  call(index, bot.lock);
+                  setIsNavOpen(false);
+                }}
+                className={`w-full flex items-center gap-4 px-6 py-3 rounded-md text-lg transition ${
+                  activeTab === index
+                    ? "bg-blue-700 font-semibold text-white dark:bg-yellow-500 dark:text-black"
+                    : "bg-gray-700 text-white hover:bg-gray-600 dark:hover:bg-gray-800"
+                }`}
+              >
+                <Image
+                  width={32}
+                  height={32}
+                  src={`/images/${bot.name}.png`}
+                  alt={`${bot.name} logo`}
+                  className="w-8 h-8 rounded-full"
+                />
+                {bot.name}
+                {bot.lock && (
+                  <span className="ml-auto px-2 py-1 text-xs bg-red-600 rounded-md text-white">
+                    Locked
+                  </span>
+                )}
+              </button>
+            ))}
+          </nav>
+        </div>
+      )}
+
+      {/* Sidebar for Desktop */}
       <div
         ref={ref}
-        className="w-full md:w-1/4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-200 flex flex-col items-center p-6 shadow-lg"
+        className="hidden md:block w-full md:w-1/4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-200 flex flex-col items-center p-6 shadow-lg"
       >
         <header className="mb-6 w-full text-center">
           <h1 className="text-4xl font-bold sm:text-left">WHA Chatbot</h1>
         </header>
-
-        {/* Button Layout for Desktop */}
         <nav className="w-full space-y-4">
           {filteredBots.map((bot, index) => (
             <button
               key={index}
-              onClick={() => call(index, bot.lock)} // Set index instead of name
+              onClick={() => call(index, bot.lock)}
               className={`w-full flex items-center gap-4 px-6 py-3 rounded-md text-lg ${
                 activeTab === index
                   ? "bg-blue-700 font-semibold dark:bg-yellow-500 dark:text-black"
@@ -310,7 +396,7 @@ export default function Home() {
       </div>
 
       {/* Chat Window */}
-      <div className="flex-1 mt-6 p-6 md:mt-14 md:p-0">
+      <div className=" w-full md:flex-1 md:mt-8 md:p-6 md:mt-14  ">
         {filteredBots[activeTab]?.name === "Flux" ? (
           <FluxChatTab />
         ) : (
