@@ -8,6 +8,7 @@ import Link from "next/link";
 import ModelHome from "../../Component/BotsHomepage";
 import LoadingDots from "../../Component/LoadingDots";
 import { useRouter } from "next/navigation";
+import { Analytics } from "@vercel/analytics/react";
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -84,6 +85,7 @@ export default function Home() {
 
   return (
     <div className="bg-gray-900 text-gray-200">
+      <Analytics />
       <Head>
         <title>AiNzX- Unlock the Power of AI</title>
         <meta

@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ainzx.com
+
+# Sitemaps
+Sitemap: https://ainzx.com/sitemap.xml
+Sitemap: https://yourwebsite.com/custom-sitemap-1.xml
