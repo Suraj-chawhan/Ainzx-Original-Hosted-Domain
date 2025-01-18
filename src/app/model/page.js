@@ -239,7 +239,7 @@ export default function Home() {
     <div className="relative w-full flex h-[100vh] font-sans bg-gray-50 dark:bg-gray-900 dark:text-gray-200 flex-wrap md:flex-nowrap">
       {/* Navbar for Mobile */}
       <div className="absolute top-0 left-0 w-full md:hidden flex items-center justify-between bg-blue-600 text-white p-4 z-50">
-        <h1 className="text-xl font-bold">WHA Chatbot</h1>
+        <h1 className="text-xl font-bold">AiNzX</h1>
         <button
           className="text-white text-lg"
           onClick={() => setIsNavOpen(!isNavOpen)}
@@ -364,7 +364,7 @@ export default function Home() {
         className="hidden md:block w-full md:w-1/4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-200 flex flex-col items-center p-6 shadow-lg"
       >
         <header className="mb-6 w-full text-center">
-          <h1 className="text-4xl font-bold sm:text-left">WHA Chatbot</h1>
+          <h1 className="text-4xl font-bold sm:text-left">AiNzX</h1>
         </header>
         <nav className="w-full space-y-4">
           {filteredBots.map((bot, index) => (
