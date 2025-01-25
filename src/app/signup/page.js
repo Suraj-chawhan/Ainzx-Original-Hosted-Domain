@@ -50,11 +50,39 @@ function Page() {
     }
   }
 
-  return (
+
+   const [hasSubscription, setHasSubscription] = useState("");
+
+    const checkSubscription = async () => {
+      try {
+        const response = await fetch("/api/subscription", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, type }),
+        });
+        const { user } = await response.json();
+        setHasSubscription(user.subscription.plan);
+      } catch (error) {
+        console.error("Error checking subscription:", error);
+      }
+    };
+
+function call(){
+if(hasSubscription){
+router.back();
+}
+  else{
+router.push("/")
+  }
+
+}
+    return (
     <div className="h-screen w-screen bg-gradient-to-tl from-zinc-700 via-zinc-800 to-zinc-950 flex justify-center items-center">
       <div className="bg-zinc-900 p-8 rounded-2xl shadow-2xl flex flex-col items-center w-full max-w-md border border-zinc-700 relative z-10 backdrop-blur-sm bg-opacity-80">
         <button
-          onClick={() => router.back()}
+          onClick={call}
           className="absolute top-4 left-4 bg-zinc-700 p-2 rounded-2xl text-zinc-100 font-semibold hover:text-zinc-300 transition-all"
         >
           {"<< Back"}
