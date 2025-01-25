@@ -328,7 +328,7 @@ export default function Home() {
                     <li>✔️ Easy integration</li>
                   </ul>
                   <button
-                    onClick={() => router.push(`/${model}`)}
+                    onClick={() => router.push(`/individual-model/${model}`)}
                     className="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
                   >
                     Try Now
