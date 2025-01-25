@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { Analytics } from '@vercel/analytics/react';
 
 
-const a = ["chatgptBot", "Mixtrial", "Gemini", "Lama", "Cohere", "Flux"];
+const a = ["ChatGPT", "Mixtrial", "Gemini", "Lama", "Cohere", "Flux"];
 
 export default function Home() {
   const { data: session, status } = useSession();
