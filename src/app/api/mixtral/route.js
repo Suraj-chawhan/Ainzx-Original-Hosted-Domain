@@ -22,7 +22,7 @@ export async function POST(req) {
       ],
       model: "mixtral-8x7b-32768",
       temperature: 1,
-      max_tokens: 1024,
+      max_tokens: 150,
       top_p: 1,
       stream: false,
       stop: null,
