@@ -12,7 +12,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import FluxChatTab from "../flux/page";
 import gsap from "gsap";
-
+import Deepseek from "../../../Component/Model/Deepseek";
 import ChatGPT from "../../../Component/Chatgpt";
 import Cohere from "../../../Component/Model/Cohere";
 import LoadingDots from "../../../Component/LoadingDots";
@@ -77,6 +77,8 @@ const ChatTab = ({ tabName, url, setLoading, loading }) => {
         return <ChatGPT />;
       case "Cohere":
         return <Cohere />;
+      case "Deepseek":
+        return <Deepseek />;
       default:
         return null;
     }
@@ -102,7 +104,7 @@ const ChatTab = ({ tabName, url, setLoading, loading }) => {
         <Html fullscreen>
           <div className="flex flex-col w-full max-h-screen p-4 space-y-4 overflow-y-auto bg-transparent">
             {/* Chat History */}
-            <div className="flex flex-col space-y-4 max-h-[calc(100vh-160px)] overflow-y-auto">
+            <div className="mt-12 flex flex-col space-y-4 max-h-[calc(100vh-160px)] overflow-y-auto">
               {chatHistory.map((chat) => (
                 <div
                   key={chat.id}
@@ -126,7 +128,7 @@ const ChatTab = ({ tabName, url, setLoading, loading }) => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-                className="w-[90%] flex-1 px-4  py-2 border rounded-md outline-none text-slate-900 border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-600 dark:focus:ring-yellow-400"
+                className="w-[85%] flex-1 px-4 py-2 border rounded-md outline-none text-slate-900 border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-600 dark:focus:ring-yellow-400"
               />
               <button
                 onClick={handleSendMessage}
@@ -141,14 +143,14 @@ const ChatTab = ({ tabName, url, setLoading, loading }) => {
     </div>
   );
 };
-
 const bots = [
-  { name: "Lama", lock: false, url: "/lama" },
-  { name: "Mixtral", lock: false, url: "/mixtral" },
-  { name: "Gemini", lock: false, url: "/gemma" },
-  { name: "Flux", lock: false, url: "/flux" },
-  { name: "Chatgpt", lock: true, url: "/chatgpt" },
-  { name: "Cohere", lock: true, url: "/claude" },
+  { name: "Lama", lock: false, url: "/lama", new: false },
+  { name: "Mixtral", lock: false, url: "/mixtral", new: false },
+  { name: "Gemini", lock: false, url: "/gemma", new: false },
+  { name: "Flux", lock: false, url: "/flux", new: false },
+  { name: "Deepseek", lock: false, url: "/deepseek", new: true },
+  { name: "Chatgpt", lock: true, url: "/chatgpt", new: false },
+  { name: "Cohere", lock: true, url: "/claude", new: false },
 ];
 
 export default function Home() {
@@ -384,7 +386,14 @@ export default function Home() {
                 alt={`${bot.name} logo`}
                 className="w-8 h-8 rounded-full"
               />
-              {bot.name}
+              <div className="flex gap-2">
+                {bot.name}
+                {bot.new ? (
+                  <h2 className="bg-green-500 px-1 rounded-xl">New *</h2>
+                ) : (
+                  ""
+                )}
+              </div>
               {bot.lock && (
                 <span className="ml-2 px-2 py-1 text-xs bg-red-600 rounded-md">
                   Locked

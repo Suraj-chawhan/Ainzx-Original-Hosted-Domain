@@ -9,7 +9,7 @@ import Lama from "./Model/Lama";
 import Cohere from "./Model/Cohere";
 import React, { useState, useRef, useEffect } from "react";
 import LoadingDots from "./LoadingDots";
-
+import Deepseek from "./Model/Deepseek";
 const ChatInterface = ({ url, tabName }) => {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
@@ -68,6 +68,8 @@ const ChatInterface = ({ url, tabName }) => {
         return <ChatGPT />;
       case "Cohere":
         return <Cohere />;
+      case "Deepseek":
+        return <Deepseek />;
       default:
         return null;
     }

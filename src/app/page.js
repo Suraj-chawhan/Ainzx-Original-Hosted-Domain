@@ -8,10 +8,17 @@ import Link from "next/link";
 import ModelHome from "../../Component/BotsHomepage";
 import LoadingDots from "../../Component/LoadingDots";
 import { useRouter } from "next/navigation";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
-
-const a = ["ChatGPT", "Mixtrial", "Gemini", "Lama", "Cohere", "Flux"];
+const a = [
+  { name: "ChatGPT", new: false },
+  { name: "Mixtrial", new: false },
+  { name: "Gemini", new: false },
+  { name: "Lama", new: false },
+  { name: "Cohere", new: false },
+  { name: "Flux", new: false },
+  { name: "Deepseek", new: true },
+];
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -31,11 +38,11 @@ export default function Home() {
         gsap.fromTo(
           menuRef.current,
           { height: 0, opacity: 0 },
-          { 
-            height: "auto", 
-            opacity: 1, 
-            duration: 0.5, 
-            ease: "power2.out"
+          {
+            height: "auto",
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
           }
         );
 
@@ -43,16 +50,16 @@ export default function Home() {
         menuItemsRef.current.forEach((item, index) => {
           gsap.fromTo(
             item,
-            { 
-              x: -20, 
-              opacity: 0 
+            {
+              x: -20,
+              opacity: 0,
             },
-            { 
-              x: 0, 
-              opacity: 1, 
+            {
+              x: 0,
+              opacity: 1,
               duration: 0.3,
               delay: 0.1 + index * 0.1,
-              ease: "power2.out"
+              ease: "power2.out",
             }
           );
         });
@@ -61,7 +68,7 @@ export default function Home() {
           height: 0,
           opacity: 0,
           duration: 0.3,
-          ease: "power2.in"
+          ease: "power2.in",
         });
       }
     }
@@ -111,46 +118,56 @@ export default function Home() {
   ];
 
   return (
-    
     <div className="bg-gray-900 text-gray-200 min-h-screen">
       <Analytics /> {/* vercel analytics */}
       <Head>
         <title>Ainzx - Unlock the Power of AI</title>
-        <meta name="description" content="Experience the best AI models in one place" />
+        <meta
+          name="description"
+          content="Experience the best AI models in one place"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/images/Ainzx_logo.png" />
       </Head>
-
       <header className="bg-gray-800 text-white py-4 shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <h1 className="text-xl md:text-2xl font-bold">AiNzX</h1>
-            
+
             {/* Mobile Menu Button with Animation */}
-            <button 
+            <button
               className="md:hidden p-2 relative w-10 h-10 focus:outline-none"
               onClick={toggleMenu}
               aria-label="Toggle Menu"
             >
-              <div className="absolute w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"
+              <div
+                className="absolute w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"
                 style={{
-                  top: '50%',
-                  left: '50%',
-                  transform: `translate(-50%, -50%) ${isMenuOpen ? 'rotate(45deg)' : 'translateY(-6px)'}`
+                  top: "50%",
+                  left: "50%",
+                  transform: `translate(-50%, -50%) ${
+                    isMenuOpen ? "rotate(45deg)" : "translateY(-6px)"
+                  }`,
                 }}
               />
-              <div className="absolute w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"
+              <div
+                className="absolute w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"
                 style={{
-                  top: '50%',
-                  left: '50%',
-                  transform: `translate(-50%, -50%) ${isMenuOpen ? 'scale(0)' : 'scale(1)'}`
+                  top: "50%",
+                  left: "50%",
+                  transform: `translate(-50%, -50%) ${
+                    isMenuOpen ? "scale(0)" : "scale(1)"
+                  }`,
                 }}
               />
-              <div className="absolute w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"
+              <div
+                className="absolute w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"
                 style={{
-                  top: '50%',
-                  left: '50%',
-                  transform: `translate(-50%, -50%) ${isMenuOpen ? 'rotate(-45deg)' : 'translateY(6px)'}`
+                  top: "50%",
+                  left: "50%",
+                  transform: `translate(-50%, -50%) ${
+                    isMenuOpen ? "rotate(-45deg)" : "translateY(6px)"
+                  }`,
                 }}
               />
             </button>
@@ -158,9 +175,9 @@ export default function Home() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-6">
               {menuItems.map((item, index) => (
-                <Link 
+                <Link
                   key={index}
-                  href={item.href} 
+                  href={item.href}
                   className="hover:text-blue-400 transition-colors"
                 >
                   {item.label}
@@ -191,7 +208,7 @@ export default function Home() {
           </div>
 
           {/* Mobile Menu with Animation */}
-          <div 
+          <div
             ref={menuRef}
             className="md:hidden overflow-hidden"
             style={{ height: 0 }}
@@ -202,25 +219,25 @@ export default function Home() {
                   key={index}
                   href={item.href}
                   className="hover:text-blue-400 transition-colors transform"
-                  ref={el => menuItemsRef.current[index] = el}
+                  ref={(el) => (menuItemsRef.current[index] = el)}
                   onClick={toggleMenu}
                 >
                   {item.label}
                 </Link>
               ))}
               {!session ? (
-                <Link 
+                <Link
                   href="/signin"
-                  ref={el => menuItemsRef.current[menuItems.length] = el}
+                  ref={(el) => (menuItemsRef.current[menuItems.length] = el)}
                 >
                   <button className="w-full bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition-colors">
                     Sign In
                   </button>
                 </Link>
               ) : (
-                <div 
+                <div
                   className="space-y-2"
-                  ref={el => menuItemsRef.current[menuItems.length] = el}
+                  ref={(el) => (menuItemsRef.current[menuItems.length] = el)}
                 >
                   <p className="text-sm">Welcome, {session.user.name}!</p>
                   <button
@@ -238,7 +255,6 @@ export default function Home() {
           </div>
         </div>
       </header>
-
       <main>
         {/* Hero Section */}
         <section className="hero-section bg-gradient-to-r from-blue-900 to-purple-800 text-white py-12 md:py-20">
@@ -317,10 +333,19 @@ export default function Home() {
                   key={index}
                   className="model-card p-6 bg-gray-800 shadow rounded text-center hover:bg-gray-700 transition-colors"
                 >
-                  <h4 className="text-lg md:text-xl font-bold mb-2">{model}</h4>
+                  <div className="flex gap-2">
+                    <h4 className="text-lg md:text-xl font-bold mb-2">
+                      {model.name}
+                    </h4>
+                    {model.new ? (
+                      <h2 className="bg-red-500 p-1 rounded-xl">New *</h2>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                   <p className="mb-4 text-sm md:text-base">
-                    Explore the advanced capabilities of {model}, designed for
-                    seamless AI-driven interactions and tasks.
+                    Explore the advanced capabilities of {model.name}, designed
+                    for seamless AI-driven interactions and tasks.
                   </p>
                   <ul className="mb-4 text-sm text-gray-400 space-y-2">
                     <li>✔️ High accuracy</li>
@@ -328,7 +353,9 @@ export default function Home() {
                     <li>✔️ Easy integration</li>
                   </ul>
                   <button
-                    onClick={() => router.push(`/individual-model/${model}`)}
+                    onClick={() =>
+                      router.push(`/individual-model/${model.name}`)
+                    }
                     className="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
                   >
                     Try Now
@@ -339,18 +366,26 @@ export default function Home() {
           </div>
         </section>
       </main>
-
       <footer className="bg-gray-800 text-gray-400 py-6">
         <div className="container mx-auto px-4 text-center">
           <p>© 2024 Ainzx. All rights reserved.</p>
           <div className="flex flex-col md:flex-row justify-center space-y-2 md:space-y-0 md:space-x-4 mt-4">
-            <Link href="./pages/privacy-policy" className="hover:text-blue-400 transition-colors">
+            <Link
+              href="./pages/privacy-policy"
+              className="hover:text-blue-400 transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="./pages/terms-and-conditions" className="hover:text-blue-400 transition-colors">
+            <Link
+              href="./pages/terms-and-conditions"
+              className="hover:text-blue-400 transition-colors"
+            >
               Terms of Service
             </Link>
-            <Link href="./pages/contact" className="hover:text-blue-400 transition-colors">
+            <Link
+              href="./pages/contact"
+              className="hover:text-blue-400 transition-colors"
+            >
               Contact
             </Link>
           </div>
@@ -358,4 +393,4 @@ export default function Home() {
       </footer>
     </div>
   );
-    }
+}

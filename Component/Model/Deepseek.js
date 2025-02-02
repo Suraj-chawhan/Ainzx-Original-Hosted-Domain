@@ -6,7 +6,7 @@ Command: npx gltfjsx@6.5.0 gemini.glb
 import React, { useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-export default function Gemini(props) {
+export default function Deepseek(props) {
   const group = React.useRef();
   const { nodes, materials, animations } = useGLTF("/model/gemini.glb");
   const { actions } = useAnimations(animations, group);
@@ -47,7 +47,7 @@ export default function Gemini(props) {
         <mesh
           name="Body"
           geometry={nodes.Body.geometry}
-          material={materials.Blue}
+          material={materials.Purple}
         />
         <group name="Face" position={[0, 1.6, 0.266]}>
           <mesh
@@ -58,7 +58,7 @@ export default function Gemini(props) {
           <mesh
             name="Sphere005_1"
             geometry={nodes.Sphere005_1.geometry}
-            material={materials.Blue}
+            material={materials.Purple}
           />
           <mesh
             name="Sphere005_2"
@@ -69,13 +69,13 @@ export default function Gemini(props) {
         <mesh
           name="Arm_-1"
           geometry={nodes["Arm_-1"].geometry}
-          material={materials.Blue}
+          material={materials.Purple}
           position={[-1.2, 0.5, 0]}
         />
         <mesh
           name="Arm_1"
           geometry={nodes.Arm_1.geometry}
-          material={materials.Blue}
+          material={materials.Purple}
           position={[1.2, 0.5, 0]}
         />
         <mesh
