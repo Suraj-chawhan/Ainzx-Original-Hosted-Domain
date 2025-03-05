@@ -181,7 +181,7 @@ export default function Home() {
       </div>
       {/* Chat Interface */}
       <div className="h-full w-full   md:flex-1 md:pt-20 md:p-6 overflow-y-auto">
-        <ChatInterface tabName="Gemini" url={"gemini"} />
+        <ChatInterface tabName="Gemini" url={"gemma"} />
       </div>
     </div>
   );
