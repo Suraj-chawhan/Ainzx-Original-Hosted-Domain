@@ -59,7 +59,7 @@ export default function SubscriptionPage() {
           <button
             className="bg-blue-600 text-white px-4 py-2 rounded-md mt-4 w-full hover:bg-blue-700 transition duration-200"
             onClick={() =>
-              handlePayment(15, jwt, userId, name, "Pro Plan", type, router)
+              handlePayment( 15 * Number(process.env.DOLLAR), jwt, userId, name, "Pro Plan", type, router)
             }
           >
             Try Free
@@ -67,7 +67,7 @@ export default function SubscriptionPage() {
           <button
             className="text-blue-600 border border-blue-600 px-4 py-2 rounded-md mt-2 w-full hover:bg-blue-50 transition duration-200"
             onClick={() =>
-              handlePayment(15, jwt, userId, name, "Premium Plan", type, router)
+              handlePayment( 15 * Number(process.env.DOLLAR), jwt, userId, name, "Premium Plan", type, router)
             }
           >
             Buy Now →
@@ -106,7 +106,7 @@ export default function SubscriptionPage() {
           </p>
           <button
             className="bg-blue-600 text-white px-4 py-2 rounded-md mt-4 w-full hover:bg-blue-700 transition duration-200"
-            onClick={() => handlePayment( 15 * Number(process.env.DOLLAR), jwt, userId, name, "Pro Plan")}
+            onClick={() => handlePayment( 25 * Number(process.env.DOLLAR), jwt, userId, name, "Pro Plan")}
           >
             Try Free
           </button>
