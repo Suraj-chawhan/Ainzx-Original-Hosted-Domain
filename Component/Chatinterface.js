@@ -40,7 +40,7 @@ const ChatInterface = ({ url, tabName }) => {
           body: JSON.stringify({ prompt: message }),
         });
         const result = await response.json();
-
+     console.log(result)
         setChatHistory((prev) => [
           ...prev,
           { id: prev.length + 1, text: result.message, sender: "bot" },
