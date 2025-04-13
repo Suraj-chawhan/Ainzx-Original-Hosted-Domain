@@ -92,53 +92,7 @@ export default function SubscriptionPage() {
           </div>
         </div>
 
-        {/* Pro Plan */}
-        <div className="bg-gray-800 border-2 border-blue-600 rounded-lg shadow-lg p-8 relative transform transition duration-300 hover:scale-105 hover:bg-gray-700">
-          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs uppercase px-3 py-1 rounded-full">
-            Most Popular!
-          </div>
-          <h3 className="text-xl font-semibold mb-4 text-gray-300">Pro Plan</h3>
-          <p className="text-5xl font-bold text-gray-100">
-            $25<span className="text-lg font-normal"> /user/mo</span>
-          </p>
-          <p className="text-sm text-gray-500 mt-2">
-            $30 USD if billed monthly <br /> 3 License Minimum
-          </p>
-          <button
-            className="bg-blue-600 text-white px-4 py-2 rounded-md mt-4 w-full hover:bg-blue-700 transition duration-200"
-            onClick={() => handlePayment( 25 * Number(process.env.DOLLAR), jwt, userId, name, "Pro Plan")}
-          >
-            Try Free
-          </button>
-          <button
-            className="text-blue-600 border border-blue-600 px-4 py-2 rounded-md mt-2 w-full hover:bg-blue-50 transition duration-200"
-            onClick={() => handlePayment( 25 * Number(process.env.DOLLAR), jwt, userId, name, "Pro Plan")}
-          >
-            Buy Now →
-          </button>
-          <ul className="mt-6 space-y-2 text-sm text-gray-300">
-            <li>✓ All Standard plan features</li>
-            <li>✓ Local number support in 50+ countries</li>
-            <li>✓ CRM integrations (Salesforce, Hubspot)</li>
-            <li>✓ Unlimited meetings</li>
-            <li>✓ 24/7 phone support</li>
-            <li>✓ 10 offices</li>
-            <li>✓ Hold queues & integrations</li>
-          </ul>
-          <div className="mt-4 text-sm text-gray-400">
-            <p className="font-semibold">Features:</p>
-            <ul>
-              <li>
-                Access to all models, including advanced (e.g., ChatGPT, Gemini)
-              </li>
-              <li>Higher rate limits</li>
-              <li>Priority: Medium</li>
-              <li>Access to API endpoints</li>
-              <li>Support: 24/7</li>
-            </ul>
-            <p className="font-semibold mt-2">Tokens: 2 million tokens/month</p>
-          </div>
-        </div>
+        
 
         {/* Enterprise Plan */}
         <div className="bg-gray-800 border rounded-lg shadow-lg p-8 transform transition duration-300 hover:scale-105 hover:bg-gray-700">
