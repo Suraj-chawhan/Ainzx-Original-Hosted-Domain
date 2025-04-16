@@ -39,14 +39,14 @@ const Contact = () => {
           <p className="text-lg text-gray-300">
             Email:{" "}
             <a
-              href="mailto:un7757091@gmail.com"
+              href="mailto:surajchauhan442918@gmail.com"
               className="text-blue-400 hover:underline"
             >
-              un7757091@gmail.com
+              surajchauhan442918@gmail.com
             </a>
           </p>
           <p className="text-lg text-gray-300">
-            Phone: <span className="text-blue-400">+1 (800) 123-4567</span>
+            Phone: <span className="text-blue-400">+917840900295</span>
           </p>
         </div>
       </section>
