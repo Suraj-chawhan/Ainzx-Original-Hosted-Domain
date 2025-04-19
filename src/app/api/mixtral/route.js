@@ -20,7 +20,7 @@ export async function POST(req) {
           content: prompt,
         },
       ],
-      model: "mixtral-8x7b-32768",
+      model: "mistral-saba-24b",
       temperature: 1,
       max_tokens: 150,
       top_p: 1,
